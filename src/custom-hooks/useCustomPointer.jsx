@@ -5,13 +5,9 @@ export default function useCustomPointer(customElement) {
 
     useEffect(() => {
         const handleMove = (e) => setPos({ x: e.clientX, y: e.clientY });
-
         window.addEventListener("mousemove", handleMove);
-        document.body.style.cursor = "none";
-
         return () => {
             window.removeEventListener("mousemove", handleMove);
-            document.body.style.cursor = "";
         };
     }, []);
 
@@ -22,9 +18,7 @@ export default function useCustomPointer(customElement) {
                 left: pos.x,
                 top: pos.y,
                 transform: "translate(-50%, -50%)",
-                pointerEvents: "none",
-                zIndex: 9999,
-                userSelect: "none",
+                cursor: "none",
             }}
         >
             {customElement}
